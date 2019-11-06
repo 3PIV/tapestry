@@ -1,3 +1,5 @@
+# This Fork of Tapestry is Intended to be used with Large Molecular Datasets
+
 # Tapestry (Scientific Visualization as a Microservice)
 
 Powered by [Intel Rendering Framework](https://software.intel.com/en-us/rendering-framework)

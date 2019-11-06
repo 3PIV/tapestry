@@ -7,9 +7,11 @@
 [submodule "tapestry/pbnj"]
 	path = tapestry/pbnj
 	url = https://github.com/seelabutk/pbnj.git
+	branch = subject
 [submodule "tapestry/ospray"]
 	path = tapestry/ospray
 	url = https://github.com/ospray/ospray.git
 [submodule "tapestry/enchiladas"]
 	path = tapestry/enchiladas
 	url = https://github.com/seelabutk/enchiladas.git
+	branch = subject
