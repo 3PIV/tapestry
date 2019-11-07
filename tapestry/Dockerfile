@@ -56,8 +56,8 @@ WORKDIR /opt/ispc/
 RUN update-alternatives --install /usr/bin/ispc ispc /opt/ispc/ispc 1
 
 WORKDIR /opt/
-ADD embree-2.16.4.x86_64.linux.tar.gz /opt/
-RUN mv embree-2.16.4.x86_64.linux embree
+ADD embree-3.6.1.x86_64.linux.tar.gz /opt/
+RUN mv embree-3.6.1.x86_64.linux embree
 WORKDIR /opt/embree/
 
 WORKDIR /opt/
@@ -75,23 +75,9 @@ RUN true && \
     make install && \
     rm -rf /opt/ospray
 
-# Install SVT-HEVC for tapestry-gui
-WORKDIR /opt
-RUN true && \
-    git clone https://github.com/intel/SVT-HEVC && \
-    cd SVT-HEVC && mkdir build && cd build && cmake .. && make -j `nproc` && make install
-
 WORKDIR /opt
 RUN true && \
     git clone https://github.com/FFmpeg/FFmpeg ffmpeg
-
-WORKDIR /opt/ffmpeg/
-RUN git checkout release/4.1 && \
-    git apply ../SVT-HEVC/ffmpeg_plugin/0001-lavc-svt_hevc-add-libsvt-hevc-encoder-wrapper.patch && \
-    git apply ../SVT-HEVC/ffmpeg_plugin/0002-doc-Add-libsvt_hevc-encoder-docs.patch && \
-    export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib && \
-    export PKG_CONFIG_PATH=${PKG_CONFIG_PATH}:/usr/local/lib/pkgconfig && \
-    ./configure --enable-libsvthevc && make -j `nproc` && make install 
 
 WORKDIR /opt/
 COPY enchiladas /opt/enchiladas
